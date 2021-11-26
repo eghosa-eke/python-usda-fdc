@@ -44,7 +44,6 @@ class UsdaClient(ClientBase):
        
         params = {'format': report_format, 'nutrients': nutrients}
         params = self.process_args(**params)
-        print(params)
         res = self.run_request(Endpoints.food, fdc_id=str(fdc_id), **params)
         if raw:
             return res
@@ -68,7 +67,6 @@ class UsdaClient(ClientBase):
 
         params = {'fdcIds': fdc_ids, 'format': report_format, 'nutrients': nutrients}
         params = self.process_args(**params)
-        print(params)
         res = self.run_request(Endpoints.foods, **params)
         if raw:
             return res
@@ -132,7 +130,6 @@ class UsdaClient(ClientBase):
         params = {'query': query, 'dataType': data_type, 'pageSize': page_size, 'pageNumber': page_num,
                   'sortBy': sort_by, 'reverse': reverse, 'brandOwner': brand}
         params = self.process_args(**params)
-        print(params)
         res = self.run_request(Endpoints.search, **params)
         if raw:
             return res
