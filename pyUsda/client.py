@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from usda.enums import ReportFormat, Endpoints, DataType, Sorting
-from usda.domain import AbridgedFoodItem, BrandedFoodItem, FoundationFoodItem, \
+from .enums import ReportFormat, Endpoints, DataType, Sorting
+from .domain import AbridgedFoodItem, BrandedFoodItem, FoundationFoodItem, \
     SRLegacyFoodItem, SurveyFoodItem, SampleFoodItem, SearchResult
-from usda.base import ClientBase
+from .base import ClientBase
 
 DATA_TYPE_FOOD_ITEM = {
     "Branded": BrandedFoodItem,
@@ -12,6 +12,7 @@ DATA_TYPE_FOOD_ITEM = {
     "SR Legacy": SRLegacyFoodItem,
     "Survey": SurveyFoodItem,
     "Sample": SampleFoodItem,
+    "Survey (FNDDS)": SurveyFoodItem
 }
 
 class UsdaClient(ClientBase):
@@ -43,6 +44,7 @@ class UsdaClient(ClientBase):
        
         params = {'format': report_format, 'nutrients': nutrients}
         params = self.process_args(**params)
+        print(params)
         res = self.run_request(Endpoints.food, fdc_id=str(fdc_id), **params)
         if raw:
             return res
@@ -66,6 +68,7 @@ class UsdaClient(ClientBase):
 
         params = {'fdcIds': fdc_ids, 'format': report_format, 'nutrients': nutrients}
         params = self.process_args(**params)
+        print(params)
         res = self.run_request(Endpoints.foods, **params)
         if raw:
             return res
@@ -129,6 +132,7 @@ class UsdaClient(ClientBase):
         params = {'query': query, 'dataType': data_type, 'pageSize': page_size, 'pageNumber': page_num,
                   'sortBy': sort_by, 'reverse': reverse, 'brandOwner': brand}
         params = self.process_args(**params)
+        print(params)
         res = self.run_request(Endpoints.search, **params)
         if raw:
             return res

@@ -3,7 +3,7 @@
 
 import requests
 from requests.auth import HTTPBasicAuth
-from usda.enums import Endpoints, ReportFormat, DataType, Sorting
+from .enums import Endpoints, ReportFormat, DataType, Sorting
 import warnings
 
 BASE_URI = 'https://api.nal.usda.gov/fdc/v1'
@@ -157,7 +157,7 @@ class ClientBase(object):
         if 'fdcIds' in kwargs:
             fdc_ids = kwargs['fdcIds']
             if fdc_ids:
-                assert isinstance(fdc_ids, list) "Expected to recieve a list of FDC ids"
+                assert isinstance(fdc_ids, list), "Expected to recieve a list of FDC ids"
                 assert len(fdc_ids) <= 20, "Expected to recieve a list of up to 20 FDC IDs. Received {} instead".format(len(fdc_ids))
                 data['fdcIds'] = list(map(str, fdc_ids))
 
@@ -168,7 +168,7 @@ class ClientBase(object):
                 for dt in data_type_enums:
                     assert isinstance(dt, DataType), \
                         "'dataType' should be a list of usda.enums.DataType enums. '{}' not understood.".format(type(dt))
-                    data_type.append(dt)
+                    data_type.append(dt.value)
                 data['dataType'] = data_type
 
         if 'pageSize' in kwargs:
@@ -186,7 +186,7 @@ class ClientBase(object):
         if 'sortBy' in kwargs:
             sort_by = kwargs['sortBy']
             assert isinstance(sort_by, Sorting), "'sortBy' should be an instance of usda.enums.Sorting. sortBy object was {} instead".format(type(sort_by))
-            data['sortBy'] = sort_by
+            data['sortBy'] = sort_by.value
 
         if 'query' in kwargs:
             data['query'] = kwargs['query']

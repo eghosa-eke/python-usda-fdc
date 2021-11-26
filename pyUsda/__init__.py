@@ -3,5 +3,5 @@
 # flake8: noqa
 
 from .client import UsdaClient
-from .enums import \
-    ReportFormat, Endpoints
+from .enums import Endpoints, ReportFormat, DataType, Sorting
+

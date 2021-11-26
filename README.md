@@ -1,17 +1,17 @@
-# python-usda-fdc
+# pyUsda
 
-python-usda-fdc provides an interface for interacting with [USDA's Food Data Central API ](https://fdc.nal.usda.gov/api-guide.html).
+pyUsda provides an interface for interacting with [USDA's Food Data Central API ](https://fdc.nal.usda.gov/api-guide.html).
 
 ## Installation
 
 ```
-pip install python-usda-fdc
+pip install pyUsda
 ```
 
 ## Usage
 
 ``` python
-from usda.client import UsdaClient
+from pyUsda.client import UsdaClient
 
 client = UsdaClient("YOUR_API_KEY")
 foods = client.list_foods(page_size=5)

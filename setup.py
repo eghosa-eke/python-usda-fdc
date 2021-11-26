@@ -8,13 +8,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name='python-usda-fdc',
+    name='pyUsda',
     version=open('VERSION').read().strip(),
     author='Eghosa Eke',
     author_email='eghosaeke@gmail.com',
-    package_dir={"": "src"},
     packages=find_packages(
-        exclude=["*.tests", "*.tests.*", "tests.*", "tests"]),
+        exclude=["tests"]),
     package_data={
         '': ['*.md', 'LICENSE', 'README'],
     },
